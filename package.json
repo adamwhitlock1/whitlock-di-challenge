@@ -1,0 +1,45 @@
+{
+  "name": "php-contact-form",
+  "version": "1.0.0",
+  "description": "Welcome to the Dealer Inspire PHP Code challenge.",
+  "main": "index.js",
+  "scripts": {
+    "servePHP": "php -S 127.0.0.1:9999 -t public",
+    "compile": "webpack --mode development --progress --colors --watch --hide-modules",
+    "cypress": "cypress open",
+    "serveE2E": "WAIT_FOR_MESSAGE='Reloading Browsers...' cypressAppWatcher npm run compile",
+    "watch": "npm-run-all --parallel servePHP serveE2E cypress",
+    "build": "webpack --mode production"
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-env"
+    ]
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/dealerinspire/php-contact-form#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
+    "@cypress/webpack-preprocessor": "^4.1.0",
+    "babel-loader": "^8.0.6",
+    "browser-sync": "^2.26.7",
+    "browser-sync-webpack-plugin": "^2.2.2",
+    "css-loader": "^3.0.0",
+    "cypress": "^3.4.1",
+    "cypress-app-watcher-preprocessor": "^1.1.2",
+    "npm-run-all": "^4.1.5",
+    "vue-loader": "^15.7.0",
+    "vue-style-loader": "^4.1.2",
+    "vue-template-compiler": "^2.6.10",
+    "webpack": "^4.34.0",
+    "webpack-cli": "^3.3.4"
+  },
+  "dependencies": {
+    "axios": "^0.19.0",
+    "lodash": "^4.17.11"
+  }
+}
