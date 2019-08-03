@@ -152,7 +152,7 @@ eval("// style-loader: Adds some css to the DOM by adding a <style> tag\n\n// lo
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _css_main__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./css/main */ \"./src/client/css/main.css\");\n/* harmony import */ var _css_main__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_css_main__WEBPACK_IMPORTED_MODULE_0__);\nconsole.log('client/main.js loaded woo');\n\n\n//# sourceURL=webpack:///./src/client/main.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _css_main__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./css/main */ \"./src/client/css/main.css\");\n/* harmony import */ var _css_main__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_css_main__WEBPACK_IMPORTED_MODULE_0__);\n\n$(\"body\").addClass(\"brown-frown\");\nconsole.log('client/main.js loaded woo');\n\n//# sourceURL=webpack:///./src/client/main.js?");
 
 /***/ })
 
