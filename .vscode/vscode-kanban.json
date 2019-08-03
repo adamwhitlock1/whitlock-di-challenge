@@ -1,0 +1,34 @@
+{
+  "done": [],
+  "in-progress": [
+    {
+      "assignedTo": {
+        "name": "Adam Whitlock"
+      },
+      "creation_time": "2019-08-03T21:04:08.591Z",
+      "description": {
+        "content": "db is dealer_inspire\ntable is form_submissions\n",
+        "mime": "text/markdown"
+      },
+      "id": "2",
+      "references": [],
+      "title": "database connection setup, and wiring methods for writing forms to"
+    }
+  ],
+  "testing": [],
+  "todo": [
+    {
+      "assignedTo": {
+        "name": "Adam Whitlock"
+      },
+      "creation_time": "2019-08-03T15:29:17.792Z",
+      "description": {
+        "content": "PDO abstracted to its own class.\nShould be a singleton\nabstract methods for inserting and getting data.\ncreate unit tests for database methods",
+        "mime": "text/markdown"
+      },
+      "id": "1",
+      "references": [],
+      "title": "Create Database Class"
+    }
+  ]
+}
