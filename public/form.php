@@ -13,10 +13,5 @@ $result = $validator->run();
 echo $formEntry->run($result);
 
 
-
-
-
-
-
 // $dotenv = Dotenv\Dotenv::create($project_dir);
 // $dotenv->load();

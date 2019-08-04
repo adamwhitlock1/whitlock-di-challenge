@@ -1,13 +1,37 @@
 <?php
 namespace App\Form\EmailForm;
+
 class SendEmail {
-private $address = "moose62712@gmail.com";
-private $body = "No Body";
-private $subject = "No Subject";
+  private $address;
+  private $headers;
+  private $body;
+  private $subject;
 
-public function send() {
+  public function __construct($address="moose62712@gmail.com", $headers = "From: noemail@default.com", $body = "No Body", $subject = "No Subject")
+  {
+    $this->address = $address;
+    $this->headers = $headers;
+    $this->body = $body;
+    $this->subject = $subject;
+  }
 
-  mail($this->address, $this->body, $this->subject );
+  public function setHeaders($headers)
+  {
+    $this->headers = $headers;
+  }
 
-}
+  public function setSubject($subject)
+  {
+    $this->subject = $subject;
+  }
+
+  public function setBody($name, $message, $phone = "none")
+  {
+    $this->body = "Name: {$name}\r\nPhone: {$phone}\r\n\r\nMessage:\r\n{$message}";
+  }
+
+  public function send()
+  {
+   mail($this->address, $this->subject, $this->body, $this->headers);
+  }
 }

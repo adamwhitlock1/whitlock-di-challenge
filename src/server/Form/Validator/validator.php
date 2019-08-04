@@ -11,22 +11,22 @@ class Validator {
 
   private function validateString($string, $optional = true) {
     if( $optional ) {
-      // sanitize text and send to db
+      $val = ( empty($string) ? "none" : filter_var($string, FILTER_SANITIZE_STRING) );
       return array(
         'result' => true,
         'message' => 'Field Valid',
-        'value'   => filter_var($string, FILTER_SANITIZE_STRING)
+        'value'   => $val
       );
     } else {
       if (!filter_var($string, FILTER_SANITIZE_STRING) === false && empty($string) !== true) {
-        // sanitize text and send to DB
+        // sanitize text
         return array(
           'result' => true,
           'message' => 'Field Valid',
           'value'   => filter_var($string, FILTER_SANITIZE_STRING)
         );
       } else {
-        // don't send to DB and return an error
+        // send error for required field that is empty
         return array(
           'result' => false,
           'message' => "Required fields cannot be empty. Please re-submit the form after fixing required fields."
@@ -78,6 +78,7 @@ class Validator {
     $this->emailSanitized   = $this->validateEmail($this->formData['email']);
     $this->messageSanitized = $this->validateString($this->formData['message'], false);
 
+    // check for honeypot value to avoid spam bot entries
     if($_SERVER['REQUEST_METHOD']==='POST' && empty($this->formData['pot']) ) {
       $this->pot              = ['name' => "pot", 'message' => "Valid", 'result' => true];
     } else {

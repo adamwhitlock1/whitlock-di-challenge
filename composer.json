@@ -1,5 +1,20 @@
 {
+    "name": "adamwhitlock/php-contact-form",
+    "description": "a simple form page with validation",
     "require": {
-        "phpunit/phpunit": "^8.3"
+        "vlucas/phpdotenv": "^3.4",
+        "phpunit/phpunit": "^8.3",
+        "rollbar/rollbar": "~1.5"
+    },
+    "authors": [
+        {
+            "name": "Adam Whitlock",
+            "email": "adam.whitlock627@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/server/"
+        }
     }
 }
