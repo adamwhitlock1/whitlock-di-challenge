@@ -9,7 +9,8 @@
     "cypress": "cypress open",
     "serveE2E": "WAIT_FOR_MESSAGE='Reloading Browsers...' cypressAppWatcher npm run compile",
     "watch": "npm-run-all --parallel servePHP serveE2E cypress",
-    "build": "webpack --mode production"
+    "build": "webpack --mode production",
+    "regen": "composer dump-autoload -o"
   },
   "babel": {
     "presets": [

@@ -1,17 +1,21 @@
 <?php
 namespace App\Database\FormEntry;
-use App\Form\EmailForm\SendEmail as SendEmail;
+use App\Form\EmailForm\SendEmail;
 
 class FormEntry {
-  private $host     = '127.0.0.1';
-  private $user     = 'root';
-  private $password = 'root';
-  private $dbname   = 'dealer_inspire';
+  private $host;
+  private $user;
+  private $password;
+  private $dbname;
   private $email;
 
   public function __construct()
   {
-    $this->email = new SendEmail();
+    $this->host     = getenv('DB_HOST');
+    $this->user     = getenv('DB_USER');
+    $this->password = getenv('DB_PASS');
+    $this->dbname     = getenv('DB_NAME');
+    $this->email    = new SendEmail();
   }
 
   public function createPDO() {
