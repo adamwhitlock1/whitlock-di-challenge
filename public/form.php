@@ -13,12 +13,12 @@ use App\Database\FormEntry\FormEntry;
 $dotenv = Dotenv\Dotenv::create(PROJECT_DIR);
 $dotenv->load();
 
-// Rollbar::init(
-//     array(
-//         'access_token' => getenv('ROLLBAR_TOKEN'),
-//         'environment' => getenv('ROLLBAR_MODE')
-//     )
-// );
+Rollbar::init(
+    array(
+        'access_token' => getenv('ROLLBAR_TOKEN'),
+        'environment' => getenv('ROLLBAR_MODE')
+    )
+);
 
 // Rollbar::log(Level::info(), 'Test info message');
 // throw new Exception('Test exception');
