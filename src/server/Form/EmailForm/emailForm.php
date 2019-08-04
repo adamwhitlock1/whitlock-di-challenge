@@ -32,6 +32,11 @@ class SendEmail {
 
   public function send()
   {
-   mail($this->address, $this->subject, $this->body, $this->headers);
+    try {
+      mail($this->address, $this->subject, $this->body, $this->headers);
+    } catch (\Throwable $th) {
+      throw $th;
+    }
+
   }
 }

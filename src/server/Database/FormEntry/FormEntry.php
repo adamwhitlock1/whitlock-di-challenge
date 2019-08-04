@@ -1,6 +1,7 @@
 <?php
 namespace App\Database\FormEntry;
 use App\Form\EmailForm\SendEmail;
+use \Exception;
 
 class FormEntry {
   private $host;
@@ -22,14 +23,15 @@ class FormEntry {
     $dsn = 'mysql:host=' . $this->host . ';port=8889;dbname=' . $this->dbname;
     try {
       $pdo = new \PDO($dsn, $this->user, $this->password);
-      // set the PDO error mode to exception
       $pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
       $pdo->setAttribute(\PDO::ATTR_DEFAULT_FETCH_MODE, \PDO::FETCH_OBJ);
       return $pdo;
     }
-    catch(PDOException $e)
+    catch(\PDOException $e)
     {
-      echo "Connection failed: " . $e->getMessage();
+      $pdo['result'] = 'error';
+      $pdo['message'] = $e->getMessage();
+      return $pdo;
     }
   }
 
@@ -49,7 +51,7 @@ class FormEntry {
 
   public function addEntry($formData, $pdo) {
 
-    if ($formData['failures'] === 0) {
+    if ($formData['failures'] === 0 && $pdo['result'] !== 'error') {
 
       $data = array(
         'name'    => $formData['name']['value'],
@@ -67,6 +69,12 @@ class FormEntry {
       $this->email->setBody($data['name'], $data['message'], $data['phone']);
       $this->email->send();
 
+    } else {
+      $formData['failures'] = 1;
+      $formData['db'] = array(
+        'result' => false,
+        'message' => $pdo['message']
+      );
     }
     return json_encode($formData);
   }

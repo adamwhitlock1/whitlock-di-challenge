@@ -22,8 +22,12 @@ Rollbar::init(
 
 // Rollbar::log(Level::info(), 'Test info message');
 // throw new Exception('Test exception');
+try {
+  $formEntry = new FormEntry();
+} catch (\Throwable $th) {
+  throw $th;
+}
 
-$formEntry = new FormEntry();
 
 $validator = new Validator();
 $result = $validator->run();
