@@ -5,14 +5,16 @@
   "main": "index.js",
   "scripts": {
     "servePHP": "php -S 127.0.0.1:9999 -t public",
-    "compile": "webpack --mode development --progress --colors --watch --hide-modules",
+    "compile": "webpack --mode development --watch --hide-modules",
     "cypress": "cypress open",
     "serveE2E": "WAIT_FOR_MESSAGE='Reloading Browsers...' cypressAppWatcher npm run compile",
-    "watch": "npm-run-all --parallel servePHP serveE2E cypress",
     "build": "webpack --mode production",
     "regen": "composer dump-autoload -o",
     "killserver": "lsof -ti:9999 | xargs kill",
-    "testPHP": "phpunit-watcher watch"
+    "watchTestsE2E": "npm-run-all --parallel servePHP serveE2E cypress",
+    "watchTestsPHP": "phpunit-watcher watch",
+    "watchALL": "npm-run-all --parallel watchTestsE2E watchTestsPHP",
+    "dev": "npm-run-all --parallel servePHP compile"
   },
   "babel": {
     "presets": [

@@ -13,15 +13,23 @@ use App\TestingStuff\Sample;
 
 class SumTest extends TestCase
 {
+    public function setUp(): void
+    {
+        $this->Sum = new Sample();
+    }
+
+    public function tearDown(): void
+    {
+        unset($this->Sum);
+    }
 
     /** @test */
     public function test()
     {
-        $class = new Sample();
-        $sum = $class->total([5, 5, 5, 5]);
+        $sum = $this->Sum->total([5, 5, 5, 5]);
         $this->assertEquals(
             20,
             $sum,
-            "Test simple sum function for the best summmmmmmmmmmmmmmm :)");
+            "Test simple sum function for the best sum");
     }
 }

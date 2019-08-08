@@ -102,5 +102,4 @@ class FormControllerTest extends TestCase
         $this->assertFalse($data['message']['result'], "Message false bc too short");
 
     }
-
 }

@@ -90,6 +90,7 @@ function showSuccess(data){
 }
 
 function evalResponse(data){
+  console.log(data);
   if (data.failures > 0) {
     showErrors(data);
     alertErrors(data);

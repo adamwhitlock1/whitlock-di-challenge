@@ -119,17 +119,17 @@
                     <form id="contact-form" data-parsley-validate="">
                         <div class="form-group" id="name">
                           <label for="name">Full Name*</label>
-                          <input type="text" class="form-control input-lg" placeholder="Your name here" value="adam" required="" data-parsley-trigger="change">
+                          <input type="text" class="form-control input-lg" placeholder="Your name here" required="" data-parsley-trigger="change">
                           <span class="field-message"> </span>
                         </div>
                         <div class="form-group" id="email">
                           <label for="email">Email address*</label>
-                          <input type="email" class="form-control input-lg" placeholder="Email" value="adam@test.com" required="" data-parsley-trigger="change">
+                          <input type="email" class="form-control input-lg" placeholder="Email" required="" data-parsley-trigger="change">
                           <span class="field-message"> </span>
                         </div>
                         <div class="form-group" id="phone">
                           <label for="phone">Phone Number</label>
-                          <input type="text" class="form-control input-lg" placeholder="555-555-5555" value="123-123-1234" required>
+                          <input type="text" class="form-control input-lg" placeholder="555-555-5555" required>
                           <span class="field-message"> </span>
                         </div>
                         <div class="form-group" id="message">
