@@ -112,7 +112,7 @@
     <!-- Contact Section -->
     <section id="contact" class="container content-section text-center">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2">
+            <div class="col-lg-8 col-lg-offset-2" id="contact-column">
                 <h2>Contact Guy Smiley</h2>
                 <p>Remember Guy Smiley?  Yeah, he wants to hear from you.</p>
                 <p class="bg-primary">
@@ -175,6 +175,9 @@
 
     <!-- Plugin JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+
+    <!-- jQuery form validation -->
+    <script src="vendor/parsley/parsley.min.js"></script>
 
     <!-- Google Maps API Key - Use your own API key to enable the map feature. More information on the Google Maps API can be found at https://developers.google.com/maps/ -->
     <!-- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRngKslUGJTlibkQ3FkfTxj3Xss1UlZDA&sensor=false"></script> -->

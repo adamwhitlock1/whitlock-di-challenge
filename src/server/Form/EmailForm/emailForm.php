@@ -7,7 +7,7 @@ class SendEmail {
   private $body;
   private $subject;
 
-  public function __construct($address="moose62712@gmail.com", $headers = "From: noemail@default.com", $body = "No Body", $subject = "No Subject")
+  public function __construct()
   {
     $this->address = $address;
     $this->headers = $headers;
