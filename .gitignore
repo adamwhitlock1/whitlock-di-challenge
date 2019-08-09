@@ -1,5 +1,7 @@
 /vendor/
 
+/.idea/
+
 # Logs
 logs
 *.log
@@ -88,3 +90,9 @@ typings/
 
 # DynamoDB Local files
 .dynamodb/
+.idea/modules.xml
+public/.DS_Store
+.DS_Store
+src/.DS_Store
+src/server/.DS_Store
+src/server/Database/.DS_Store
