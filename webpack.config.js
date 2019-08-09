@@ -12,7 +12,7 @@ const config = {
   // One for frontend and one for the admin area.
   entry: {
     // frontend and admin will replace the [name] portion of the output config below.
-    main: "./src/client/main.js"
+    main: "./src/client/js/main.js"
   },
 
   // Create the output files.
@@ -68,9 +68,6 @@ const config = {
           {
             loader: MiniCssExtractPlugin.loader,
             options: {
-              // you can specify a publicPath here
-              // by default it uses publicPath in webpackOptions.output
-              publicPath: "../css/",
               hmr: process.env.NODE_ENV === "development"
             }
           },

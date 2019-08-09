@@ -1,8 +1,7 @@
-import './css/main';
 import axios from 'axios';
 import {alertErrors, showFormErrors, showSuccessMessage, getFormValues} from "./actions";
 
-import "./css/main";
+import '../css/main.css'
 
 function showLoading(bool){
   if(bool){
@@ -20,6 +19,9 @@ function postForm(e){
   const data = getFormValues();
   axios.post('/form.php', data).then((res)=>{
     evalResponse(res.data);
+  }).catch(function (error) {
+    // handle error
+    alert("An error occurred " + error + "\n\r Please Contact Support");
   })
 }
 
