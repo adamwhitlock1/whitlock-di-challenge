@@ -23,8 +23,8 @@ class FormController
 
     protected function _validateString($string, $optional = true, $length = 1)
     {
-        if( $optional ) {
-            $val = ( empty($string) ? "none" : filter_var($string, FILTER_SANITIZE_STRING) );
+        if ($optional) {
+            $val = (empty($string) ? "none" : filter_var($string, FILTER_SANITIZE_STRING));
             return array(
                 'result' => true,
                 'message' => 'Field Valid',
@@ -56,10 +56,10 @@ class FormController
                 'value'   => filter_var($string, FILTER_SANITIZE_STRING)
             );
         }
-
     }
 
-    protected function _validateEmail($email){
+    protected function _validateEmail($email)
+    {
         if (filter_var($email, FILTER_VALIDATE_EMAIL) && !empty($email)) {
             return array(
                 'result' => true,
@@ -78,29 +78,31 @@ class FormController
             'result' => false,
             'message' => "Incorrect email address format. Please fix and re-submit the contact form."
         );
-
     }
 
-    protected function _validateHoneypot(){
+    protected function _validateHoneypot()
+    {
         // check for honeypot value to avoid spam bot entries
-        if($_SERVER['REQUEST_METHOD']==='POST' && empty($this->_formData['pot']) ) {
+        if ($_SERVER['REQUEST_METHOD']==='POST' && empty($this->_formData['pot'])) {
             $this->_pot = ['name' => "pot", 'message' => "Valid", 'result' => true];
         } else {
             $this->_pot = ['name' => "pot", 'message' => "Invalid", 'result' => false];
         }
     }
 
-    protected function _validateParamQty(){
+    protected function _validateParamQty()
+    {
         if (count($this->_formData) > 5) {
             $this->_pot = ['name' => "pot", 'message' => "Invalid", "result" => false];
         }
     }
 
-    private function _countFailures($valData){
+    private function _countFailures($valData)
+    {
         $fails = 0;
         $valObj = (object) $valData;
         foreach ($valObj as $obj) {
-            if($obj['result'] === false){
+            if ($obj['result'] === false) {
                 $fails++;
             }
         }
@@ -108,17 +110,16 @@ class FormController
         return $valData;
     }
 
-    public function cleanData($valData){
-        $valData['name']['value'] = "";
-        $valData['email']['value'] = "";
-        $valData['phone']['value'] = "";
-        $valData['message']['value'] = "";
-        $valData['pot']['value'] = "";
+    public function cleanData($valData)
+    {
+        foreach ($valData as $key => $item) {
+            unset($valData[$key]['value']);
+        }
         return $valData;
     }
 
-    public function validate() {
-
+    public function validate()
+    {
         $this->_validateHoneypot();
         $this->_validateParamQty();
 
