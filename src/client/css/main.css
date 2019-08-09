@@ -1,14 +1,24 @@
-.hello-form {
-  color: orange;
+/*form field styling to align with sign aesthetics*/
+.form-control {
+    border: 1px solid #42DCA3;
+    color: #42DCA3;
+    background-color: transparent;
+    border-radius: 0px;
 }
 
+/*form field label*/
+#contact-form label {
+    text-transform: uppercase;
+    font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight: 400;
+}
 
 /* field message shows up under the form fields that fail val */
 .field-message {
   display: inline-block;
   margin-top: 2px;
   padding: 5px 10px;
-  border-radius: 6px;
+  border-radius: 0px;
   color: #ffffff;
   width: 100%;
 }
@@ -27,7 +37,7 @@
 
 /* success message */
 .parsley-success .has-success .field-message {
-  color: #3c763d;
+  color: #42DCA3;
 }
 
 
@@ -41,17 +51,17 @@
 input.parsley-success,
 select.parsley-success,
 textarea.parsley-success {
-  color: #468847;
-  background-color: #DFF0D8;
-  border: 1px solid #D6E9C6;
+    border: 1px solid #42DCA3;
+    color: #42DCA3;
+    background-color: rgba(223, 240, 216, 0);
 }
 
 input.parsley-error,
 select.parsley-error,
 textarea.parsley-error {
-  color: #B94A48;
-  background-color: #F2DEDE;
-  border: 1px solid #EED3D7;
+  color: #f04e4c;
+  background-color: rgba(242, 222, 222, 0);
+  border: 1px solid #f04e4c;
 }
 
 .parsley-errors-list {

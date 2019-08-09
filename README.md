@@ -56,7 +56,7 @@ You do not need to provide an interface to access that data (for example, there 
 
 Your contact form should be in valid HTML in our template. It should match the style of the template.
 
-I used the bootstrap class naming convention to create the form markup, and I added some custom styles to the form via the 
+**I used the bootstrap class naming convention to create the form markup, and I added some custom styles to the form via the src/client/main.css** 
 
 Your back-end processing should be done in PHP. You may use a framework, or plain PHP - either is fine.
 
