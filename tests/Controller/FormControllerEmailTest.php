@@ -25,14 +25,6 @@ class FormControllerEmailTest extends TestCase
         );
         $formController = new FormController($formData);
         $data = $formController->validate();
-        print_r($data['email']['result']);
-        $expected = array(
-            'name' => array('result' => true, 'message' => 'Field Valid', 'value' => 'Test Name'),
-            'email' => array('result' => false, 'mes' => 'Incorrect email address format. Please fix and re-submit the contact form.'),
-            'phone' => array('result' => true, 'message' => 'Field Valid', 'value' => '1234567890'),
-            'message' => array('result' => true, 'message' => 'Field Valid', 'value' => 'Test Message'),
-            'pot' => array('result' => true, 'message' => 'Field Valid', 'value' => 'Test Name'),
-        );
 
         $failures = $data['failures'];
 
@@ -52,11 +44,10 @@ class FormControllerEmailTest extends TestCase
         );
         $formController = new FormController($formData);
         $data = $formController->validate();
-        print_r($data['email']['result']);
 
         $failures = $data['failures'];
 
-        $this->assertEquals(1, $failures, "Single Failure for no @");
+        $this->assertEquals(1, $failures, "Single Failure for no .extension");
         $this->assertFalse($data['email']['result'], "Email result is false");
     }
 
