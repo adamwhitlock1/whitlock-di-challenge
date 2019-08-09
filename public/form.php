@@ -19,11 +19,10 @@ $formEntry = new FormEntry();
 if ($data['failures'] === 0) {
     $email = new Email();
     $email_res = $email->sendMail($data['email']['value'], $data['name']['value'], $data['message']['value'], $data['phone']['value']);
-
     $data['email_result'] = $email_res;
     if ($email_res === true) {
         $response = $formEntry->run($data);
-        echo $response;
+        echo json_encode($formController->cleanData($response));
         return;
     }
 }

@@ -41,16 +41,20 @@ class Email
         $this->_mail->Subject = $this->_subject;
         $this->_mail->isHTML(true);
         $this->_mailContent = "<h1>Contact form submission details:</h1>
-        <p>Name: {$name}\r\nPhone: {$phone}\r\n\r\nMessage:\r\n{$message}</p>";
+        <p>Name: {$name}</p>
+        <p>Phone: {$phone}</p>
+        <p>Message:</p>
+        <p>{$message}</p>";
         $this->_mail->Body = $this->_mailContent;
 
         try {
             $this->_mail->send();
+            return true;
         } catch (\Exception $e) {
             return "error: " . $e->getMessage();
         }
 
-        return true;
+
 
     }
 }

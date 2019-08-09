@@ -18,10 +18,19 @@
   background-color: #a94442;
 }
 
+.parsley-errors-list .parsley-errors-list li {
+  position: relative;
+  top: -25px;
+  text-align: right;
+  padding-right: 10px;
+}
+
 /* success message */
-.has-success .field-message {
+.parsley-success .has-success .field-message {
   color: #3c763d;
 }
+
+
 
 
 /* honeypot */

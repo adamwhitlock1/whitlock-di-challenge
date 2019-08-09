@@ -78,9 +78,9 @@ class FormEntry
             // create PDO to write to db
             $pdo = $this->createPDO();
             $entry = $this->addEntry($result, $pdo);
-            return json_encode($entry);
+            return $entry;
         } else {
-            return json_encode($result);
+            return $result;
         }
     }
 }

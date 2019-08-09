@@ -99,12 +99,21 @@ class FormController
     private function _countFailures($valData){
         $fails = 0;
         $valObj = (object) $valData;
-        foreach ($valObj as $prop) {
-            if($prop['result'] === false){
+        foreach ($valObj as $obj) {
+            if($obj['result'] === false){
                 $fails++;
             }
         }
         $valData['failures'] =  $fails;
+        return $valData;
+    }
+
+    public function cleanData($valData){
+        $valData['name']['value'] = "";
+        $valData['email']['value'] = "";
+        $valData['phone']['value'] = "";
+        $valData['message']['value'] = "";
+        $valData['pot']['value'] = "";
         return $valData;
     }
 
@@ -122,6 +131,7 @@ class FormController
         );
 
         $this->_validatedData = $this->_countFailures($valData);
+
         return $this->_validatedData;
     }
 }
