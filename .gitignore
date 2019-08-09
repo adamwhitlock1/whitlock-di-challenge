@@ -90,6 +90,7 @@ typings/
 
 # DynamoDB Local files
 .dynamodb/
+
 .idea/modules.xml
 public/.DS_Store
 .DS_Store
