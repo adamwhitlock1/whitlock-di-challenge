@@ -1,81 +1,92 @@
 
+export default class Actions {
 
-/**
- * GET FIELD VALUES
- * @returns {{name: (jQuery.fn.init|jQuery|HTMLElement|string|number|string[]|any|ChaiJQuery), email: (jQuery.fn.init|jQuery|HTMLElement|string|number|string[]|any|ChaiJQuery), phone: (jQuery.fn.init|jQuery|HTMLElement|string|number|string[]|any|ChaiJQuery), message: (jQuery.fn.init|jQuery|HTMLElement|string|number|string[]|any|ChaiJQuery), pot: (jQuery.fn.init|jQuery|HTMLElement|string|number|string[]|any|ChaiJQuery)}}
- */
-export function getFormValues(){
-  return {
-    name: $("#name input").val(),
-    email: $("#email input").val(),
-    phone: $("#phone input").val(),
-    message: $("#message textarea").val(),
-    pot: $("#pot").val()
+  #data;
+
+  set setData(data){
+    this.data = data;
   }
-}
+
+  showLoading(bool){
+    const formBtn = $("#primary-form-btn");
+    if(bool){
+      formBtn.html('<i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>');
+      return
+    }
+    setTimeout(()=>{
+      formBtn.html('submit');
+    }, 150)
+  }
 
 
-/**
- * SHOW FORM ERRORS
- * when error occurs, show a
- * red bar under the offending form fields,
- * and set text to error message
- *
- * @param data
- */
-export function showFormErrors(data){
-  const entries = Object.entries(data);
-  for (const [field, response] of entries) {
-    if ( response.result === false ) {
-      $(`#${field}`).removeClass("has-success");
-      $(`#${field}`).addClass("has-error");
-      $(`#${field} .field-message`).text(response.message);
-    } else {
-      $(`#${field} .field-message`).text(" ");
-      $(`#${field}`).removeClass("has-error");
-      $(`#${field}`).addClass("has-success");
+  /**
+   * SHOW FORM ERRORS
+   * when error occurs, show a
+   * red bar under the offending form fields,
+   * and set text to error message
+   *
+   * @param data
+   */
+  showFormErrors() {
+    const data = this.data;
+    const entries = Object.entries(data);
+    for (const [field, response] of entries) {
+
+      let field = $(`#${field}`);
+      let message = $(`#${field} .field-message`);
+
+      if (response.result === false) {
+        field.removeClass("has-success");
+        field.addClass("has-error");
+        message.text(response.message);
+      } else {
+        message.text(" ");
+        field.removeClass("has-error");
+        field.addClass("has-success");
+      }
+
     }
   }
-}
 
 
 // ALERT ERRORS
 
-/**
- *
- * @param data
- */
-export function alertErrors(data){
-  if (typeof data.db !== 'undefined') {
-    if (data.db.result === false) {
-      setTimeout(function(){
-        alert(`There was a problem submitting your form.
+  /**
+   *
+   * @param data
+   */
+  alertErrors() {
+    let data = this.data;
+    if (typeof data.db !== 'undefined') {
+      if (data.db.result === false) {
+        setTimeout(function () {
+          alert(`There was a problem submitting your form.
       Please contact our support at info@test.com.
       Error: ${data.db.message}`);
-      }, 100);
-      return
+        }, 100);
+        return
+      }
     }
+    setTimeout(function () {
+      alert(`Your form has ${data.failures} error(s), please review and correct your information and re-submit the form.`)
+    }, 100);
   }
-  setTimeout(function(){
-    alert(`Your form has ${data.failures} error(s), please review and correct your information and re-submit the form.`)
-  }, 100);
-}
 
 
-/**
- * SUCCESS MESSAGE
- *
- * removes the form and fades in a simple thank you message
- *
- * @param data
- */
-export function showSuccessMessage(data){
+  /**
+   * SUCCESS MESSAGE
+   *
+   * removes the form and fades in a simple thank you message
+   *
+   * @param data
+   */
+  showSuccessMessage() {
+    let data = this.data;
+    let col = $("#contact-column");
+    col.fadeOut();
 
-  let col = $("#contact-column");
-  col.fadeOut();
-
-  setTimeout(()=>{
-    col.append(`
+    setTimeout(() => {
+      col.append(`
     <div class="panel panel-success">
       <div class="panel-heading">
         ${data.db.message}
@@ -91,9 +102,11 @@ export function showSuccessMessage(data){
     </div>
     `);
 
-    $("#contact-form").remove();
-    col.fadeIn();
-    $('html, body').animate({scrollTop: col.offset().top - 30}, 750, 'linear');
-  },550);
+      $("#contact-form").remove();
+      col.fadeIn();
+      $('html, body').animate({scrollTop: col.offset().top - 30}, 750, 'linear');
+    }, 550);
+  }
+
 }
 

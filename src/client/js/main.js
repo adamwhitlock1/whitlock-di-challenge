@@ -1,42 +1,42 @@
 import axios from 'axios';
-import {alertErrors, showFormErrors, showSuccessMessage, getFormValues} from "./actions";
-
+import Actions from "./actions";
+import Form from "./form";
 import '../css/main.css'
 
-function showLoading(bool){
-  if(bool){
-    $("#primary-form-btn").html('<i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>');
+// actions for showing form messages/feedback
+const actions = new Actions();
+
+/*
+show error or success messages based on failures from ajax response
+ */
+function evaluateResponse(data){
+  console.log(data);
+  let actions = new Actions();
+  actions.setData = data;
+  if (data.failures > 0) {
+    actions.showLoading(false);
+    actions.showFormErrors();
+    actions.alertErrors();
     return
   }
-  setTimeout(()=>{
-    $("#primary-form-btn").html('submit');
-  }, 150)
+  actions.showSuccessMessage();
 }
 
 function postForm(e){
   e.preventDefault();
-  showLoading(true);
-  const data = getFormValues();
+  actions.showLoading(true);
+  const data = Form.values;
   axios.post('/form.php', data).then((res)=>{
-    evalResponse(res.data);
+    evaluateResponse(res.data);
   }).catch(function (error) {
     // handle error
     alert("An error occurred " + error + "\n\r Please Contact Support");
   })
 }
 
-function evalResponse(data){
-  console.log(data);
-  if (data.failures > 0) {
-    showLoading(false);
-    showFormErrors(data);
-    alertErrors(data);
-    return
-  }
-  showSuccessMessage(data);
-}
 
-$("#primary-form-btn").click(function(e){
+// set events to to do ajax instead of standard post action
+$("#primary-form-btn").on('click',function(e){
   postForm(e);
 });
 
