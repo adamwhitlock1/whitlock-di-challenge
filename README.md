@@ -14,7 +14,7 @@ Using controllers and models, I structured my code in classes that did the form 
 
 For the database I used  PDO with prepared statements.
 
-Form validation was created with conditional logic and the filter_var() function. I also implemented a rather simple honeypot to minimize some basic bot/spam based submissions.
+Form validation was created with conditional logic and the filter_var() functions. I also implemented a rather simple honeypot to minimize some basic bot/spam based submissions.
 
 Emailing was done through PHPmailer and the mailtrap service.
 
@@ -86,16 +86,32 @@ Your contact form should be in valid HTML in our template. It should match the s
 
 Your back-end processing should be done in PHP. You may use a framework, or plain PHP - either is fine.
 
+**I used a basic MVC based organization in PHP.**
+
 Your contact form data should be validated.
 
+*Validation is done through conditional logic, some basic front end validation feedback via Parsley.js, and filter_var().**
+
 One copy of the data should be emailed to the owner (listed above).  You can choose either HTML or plaintext email (or a combination).
- 
+
+**Emailing is done through PHPmailer and is connected to SMTP service via mailtrap**
+
 One copy of the data should be kept in a MySQL, MongoDB or Postgres database.
+
+**MySQL is used via php PDO and prepared statements to prevent SQL injection.**
 
 Some indication that the contact form has been sent should be given.
 
+**There is visual feedback for validation errors, as well as a success message, delivered via jquery.**
+
 You should have PHPUnit-compatible unit tests for your application.
+
+**16 Unit tests are provided with 20 assertions via phpunit**
 
 Provide either a database schema file or a programmatic way of creating your database / tables.
  
+**MySQL is used and there is a schema available in dealer_inspire.sql**
+ 
 The completed work is available in a public git repository for us to checkout and review.
+
+**here it is :)**
