@@ -1,16 +1,26 @@
 <?php
 namespace App\Model;
 
+use Exception;
 use PHPMailer\PHPMailer\PHPMailer;
 
+/**
+ * Sending out email via php mailer and mail trap service
+ *
+ * Class Email
+ * @package App\Model
+ */
 class Email
 {
     private $_mail;
     private $_to;
     private $_subject;
     private $_mailContent;
-    private $_from;
 
+    /**
+     * Email constructor.
+     * sets up main php mailer config and loads env vars
+     */
     public function __construct()
     {
         $this->_mail = new PHPMailer();
@@ -25,18 +35,20 @@ class Email
         $this->_subject = "New Form Submission From Contact Form";
     }
 
-    public function setFrom($from){
-        $this->_from = $from;
-    }
-
-    public function setSubject(string $value){
-        $this->_subject = $value;
-        return $this->_subject;
-    }
-
+    /**
+     * @param string $from - from email address
+     * @param string $name - name of sender
+     * @param string $message - main message from form
+     * @param string $phone - phone number
+     * @return bool|string - result of sending email
+     */
     public function sendMail($from, $name, $message, $phone = "none")
     {
-        $this->_mail->setFrom($from);
+        try {
+            $this->_mail->setFrom($from);
+        } catch (\PHPMailer\PHPMailer\Exception $e) {
+            return "error: " . $e->getMessage();
+        }
         $this->_mail->addAddress('guy-smiley@example.com', 'Guy Smiley');
         $this->_mail->Subject = $this->_subject;
         $this->_mail->isHTML(true);
@@ -50,7 +62,7 @@ class Email
         try {
             $this->_mail->send();
             return true;
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return "error: " . $e->getMessage();
         }
 

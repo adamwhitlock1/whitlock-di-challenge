@@ -1,6 +1,32 @@
 # Dealer Inspire PHP Code Challenge
 
-Welcome to the Dealer Inspire PHP Code challenge. 
+Welcome to the Dealer Inspire PHP Code challenge.
+
+**Message from Adam Whitlock on this submission:**
+
+Overall, I really enjoyed the challenge, and learned quite a few things while doing it. I am admittedly still learning TDD,
+and I worked on creating unit tests, but I also used Cypress end to end testing to look at some from front end testing situations.
+
+Instead of adapting a framework, I decided to take a stab at just creating an MVC base myself (although it doesnt really have much of a view).
+Using controllers and models, I structured my code in classes that did the form validation, database record insertions, and emailing.
+
+---
+
+For the database I used  PDO with prepared statements.
+
+Form validation was created with conditional logic and the filter_var() function. I also implemented a rather simple honeypot to minimize some basic bot/spam based submissions.
+
+Emailing was done through PHPmailer and the mailtrap service.
+
+A .env file is not provided in this repo, but has been sent with my email as a secure link.
+
+There is a dealer_inspire.sql file included as a database schema for the mySQL database.
+
+---
+
+Thank you for opportunity to test my skills and learn more in the process through this challenge, and I look
+forward to hearing feedback and ways I could make my code better.
+
 
 ## Getting Started
 

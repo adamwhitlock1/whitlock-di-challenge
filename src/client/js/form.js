@@ -7,6 +7,11 @@ export default class FormData {
     this.data = data;
   }
 
+  /**
+   * Use jQuery to get form field values
+   *
+   * @returns {{pot: *, phone: *, name: *, message: *, email: *}}
+   */
   values() {
     return {
       name: $("#name input").val(),
@@ -17,6 +22,11 @@ export default class FormData {
     }
   }
 
+  /**
+   * Give feedback to user by show/hiding loading spinner
+   *
+   * @param bool
+   */
   showLoading(bool){
     const formBtn = $("#primary-form-btn");
     if(bool){
@@ -28,6 +38,13 @@ export default class FormData {
     }, 150)
   }
 
+  /**
+   * Before even posting form for validation on server
+   * check honeypot to prevent any submissions that fail honeypot
+   *
+   * @param data
+   * @returns {boolean}
+   */
   testHoneypot(data){
     if (data.pot) { alert('honey pot'); throw Error("Honeypot submitted") }
     return true;

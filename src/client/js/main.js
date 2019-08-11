@@ -5,7 +5,6 @@ import '../css/main.css'
 // actions for showing form messages/feedback
 const form = new FormData();
 
-
 // show error or success messages based on failures from ajax response
 function evaluateResponse(data){
   console.log(data);

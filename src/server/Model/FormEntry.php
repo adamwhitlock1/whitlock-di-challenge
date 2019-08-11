@@ -4,6 +4,13 @@ namespace App\Model;
 
 use \Exception;
 
+/**
+ * Class FormEntry
+ * Responsible for opening db connection and
+ * writing the entry to the db.
+ *
+ * @package App\Model
+ */
 class FormEntry
 {
     private $_host;
@@ -11,6 +18,10 @@ class FormEntry
     private $_password;
     private $_dbname;
 
+    /**
+     * FormEntry constructor.
+     * set up config for db connection
+     */
     public function __construct()
     {
         $this->_host = getenv('DB_HOST');
@@ -19,6 +30,10 @@ class FormEntry
         $this->_dbname = getenv('DB_NAME');
     }
 
+    /**
+     * Create an instance of PDO
+     * @return object|\PDO
+     */
     public function createPDO()
     {
         $dsn = 'mysql:host='.$this->_host.';port=8889;dbname='.$this->_dbname;
@@ -36,6 +51,11 @@ class FormEntry
         }
     }
 
+    /**
+     * @param $formData - all form data to add to db
+     * @param $pdo - PDO instance
+     * @return mixed - form data appended with result of db write
+     */
     public function addEntry($formData, $pdo)
     {
         if ($formData['failures'] === 0 && !isset($pdo->result)) {
@@ -68,8 +88,7 @@ class FormEntry
     /**
      * Run function to be entry function call on this class
      *
-     * @param array $result all field results and messages to send client as response
-     *
+     * @param array $result - all field results and messages to send client as response
      * @return array $results
      */
     public function run($result)
