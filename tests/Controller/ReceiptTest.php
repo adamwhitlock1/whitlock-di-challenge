@@ -24,18 +24,31 @@ protected function tearDown(): void
     unset($this->receipt);
 }
 
-    /** @test */
-    public function testTotal()
+    /**
+     * @test
+     * @dataProvider provideTotal
+     * @param $items
+     * @param $expected
+     */
+    public function testTotal($items, $expected)
     {
-        $inputItems = [1, 2, 3, 4, 5];
         $coupon = null;
-        $output = $this->receipt->total($inputItems, $coupon);
+        $output = $this->receipt->total($items, $coupon);
         $this->assertEquals(
-            15,
+            $expected,
             $output,
-            "Total should equal 1.00"
+            "Total should equal {$expected}"
         );
     }
+
+    public function provideTotal(){
+        return [
+            'total equal 16' => [[1, 2, 5, 8], 16],
+            [[-1, 2, 5, 8], 14],
+            [[1, 2, 8], 11]
+        ];
+    }
+
 
     /** @test */
     public function testTotalAndCoupon()
@@ -48,6 +61,15 @@ protected function tearDown(): void
             $output,
             "Total should equal 1.00"
         );
+    }
+
+    /** @test */
+    public function testTotalException()
+    {
+        $inputItems = [1, 2, 3, 4, 5];
+        $coupon = 1.20;
+        $this->expectException('BadMethodCallException');
+        $this->receipt->total($inputItems, $coupon);
     }
 
     /** @test */
@@ -64,16 +86,30 @@ protected function tearDown(): void
         );
     }
 
+    /** @test */
     public function testPostTaxTotal() {
+        $items = [1, 2, 5, 8];
+        $tax = 0.20;
+        $coupon = null;
+
         $receipt = $this->getMockBuilder('App\Controller\Receipt')
             ->setMethods(['tax', 'total'])
             ->getMock();
-        $receipt->method('total')
+
+        $receipt->expects($this->once())
+            ->method('total')
+            ->with($items, $coupon)
             ->will($this->returnValue(10.00));
-        $receipt->method('tax')
+
+        $receipt->expects($this->once())
+            ->method('tax')
+            ->with(10.00, $tax)
             ->will($this->returnValue(1.00));
-        $result = $receipt->postTaxTotal([1, 2], 0.20, null);
+
+        $result = $receipt->postTaxTotal([1, 2, 5, 8], 0.20, null);
+
         $this->assertEquals(11.00, $result);
+
     }
 }
 
