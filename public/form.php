@@ -5,6 +5,7 @@ require PROJECT_DIR . "/vendor/autoload.php";
 use App\Controller;
 use App\Model\Email;
 use App\Model\FormEntry;
+use App\Exception;
 
 $env = Dotenv\Dotenv::create(PROJECT_DIR);
 $env->load();
@@ -29,37 +30,3 @@ if ($data['failures'] === 0) {
 
 echo json_encode($data);
 return;
-
-//use \Rollbar\Rollbar;
-//use \Rollbar\Payload\Level;
-
-// use App\Database\FormEntry\FormEntry;
-
-
-// load environment variable bc security
-
-
-//$email = new Email();
-//$email->sendMail();
-
-
-//Rollbar::init(
-//    array(
-//        'access_token' => getenv('ROLLBAR_TOKEN'),
-//        'environment' => getenv('ROLLBAR_MODE')
-//    )
-//);
-
-// Rollbar::log(Level::info(), 'Test info message');
-// throw new Exception('Test exception');
-//try {
-//  $formEntry = new FormEntry();
-//} catch (\Throwable $th) {
-//  throw $th;
-//}
-
-
-// $validator = new Validator();
-// $result = $validator->run();
-
-// echo $formEntry->run($result);

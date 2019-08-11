@@ -96,8 +96,6 @@ class FormControllerTest extends TestCase
         $formController = new FormController($formData);
         $data = $formController->validate();
 
-        print_r($data);
-
         $failures = $data['failures'];
 
         $this->assertEquals(1, $failures, "Single failure for short message");

@@ -2,6 +2,8 @@
 
 namespace App\Model;
 
+use App\Exception\RollbarException;
+
 class FormEntry
 {
     private $_host;
@@ -20,6 +22,7 @@ class FormEntry
     public function createPDO()
     {
         $dsn = 'mysql:host='.$this->_host.';port=8889;dbname='.$this->_dbname;
+        $rollbar = new RollbarException();
         try {
             $pdo = new \PDO($dsn, $this->_user, $this->_password);
             $pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
@@ -30,7 +33,7 @@ class FormEntry
             'result' => 'error',
             'message' => $e->getMessage(),
             );
-
+            $rollbar->logError("DB-{$pdo->result}  {$pdo->message}" );
             return $pdo;
         }
     }
