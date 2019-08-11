@@ -90,7 +90,7 @@ Your back-end processing should be done in PHP. You may use a framework, or plai
 
 Your contact form data should be validated.
 
-*Validation is done through conditional logic, some basic front end validation feedback via Parsley.js, and filter_var().**
+**Validation is done through conditional logic, some basic front end validation feedback via Parsley.js, and filter_var().**
 
 One copy of the data should be emailed to the owner (listed above).  You can choose either HTML or plaintext email (or a combination).
 
