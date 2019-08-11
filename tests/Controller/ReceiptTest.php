@@ -86,6 +86,30 @@ protected function tearDown(): void
         );
     }
 
+    /**
+     * @test
+     * @dataProvider provideCurrencyAmt
+     */
+    public function testCurrencyAmt($input, $expected, $msg)
+    {
+        $this->assertSame(
+            $expected,
+            $this->receipt->currencyAmt($input),
+            "assert same currency"
+        );
+    }
+
+    public function provideCurrencyAmt(){
+        return [
+            [1, 1.00, '1 should result to 1.00'],
+            [1.1, 1.10, '1.1 should result to 1.10'],
+            [1.11, 1.11, '1.11 should stay as 1.11'],
+            [1.111, 1.11, '1.111 should result as 1.11']
+        ];
+    }
+
+
+
     /** @test */
     public function testPostTaxTotal() {
         $items = [1, 2, 5, 8];
