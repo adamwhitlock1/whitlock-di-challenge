@@ -5,7 +5,6 @@ require PROJECT_DIR . "/vendor/autoload.php";
 use App\Controller;
 use App\Model\Email;
 use App\Model\FormEntry;
-use App\Exception;
 
 $env = Dotenv\Dotenv::create(PROJECT_DIR);
 $env->load();

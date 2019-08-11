@@ -37,7 +37,7 @@ class Email
     public function sendMail($from, $name, $message, $phone = "none")
     {
         $this->_mail->setFrom($from);
-        $this->_mail->addAddress('adam.whitlock627@gmail.com', 'Guy Smiley');
+        $this->_mail->addAddress('guy-smiley@example.com', 'Guy Smiley');
         $this->_mail->Subject = $this->_subject;
         $this->_mail->isHTML(true);
         $this->_mailContent = "<h1>Contact form submission details:</h1>
